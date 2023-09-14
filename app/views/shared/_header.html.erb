@@ -1,0 +1,16 @@
+<%# CSS・・・assets/stylesheets/shared/header.css %>
+<header class='top-page-header'>
+
+  <div class='nav'>
+    <ul class='lists-left'>
+      <li><%= link_to 'お客様一覧', "#", class: "customer-list" %></li>
+      <li><%= link_to 'お客様登録', "#", class: "customer-new" %></li>
+    </ul>
+    <ul class='lists-right'>
+
+      <li><%= link_to '店舗名', "#", class: "user-name" %></li> <%# マイページに遷移する %>
+      <li><%= link_to 'ログアウト', "#", method: :delete, class: "logout" %></li> 
+
+    </ul>
+  </div>
+</header>
