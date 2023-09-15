@@ -86,12 +86,12 @@ form {
   text-align: center;
 }
 
-.form-footer a {
+.form-footer .form-footer-link {
   color: #8c8c8c;
   text-decoration: none;
   transition: border-color 0.3s;
 }
 
-.form-footer a:hover {
+.form-footer .form-footer-link:hover {
   border-bottom: 1px dotted #8c8c8c;
 }
