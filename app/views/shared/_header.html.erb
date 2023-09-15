@@ -8,23 +8,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="customer-list nav-link text-dark" href="#">お客様一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="customer-new nav-link text-dark" href="#">お客様登録</a>
-          </li>
+          <li><%= link_to 'お客様一覧', "#", class: "customer-list nav-link text-dark" %></li>
+          <li><%= link_to 'お客様一覧', "#", class: "customer-new nav-link text-dark" %></li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="user-name nav-link text-dark" href="#">店舗名</a>
-          </li>
-          <li class="nav-item">
-            <a class="logout nav-link text-dark" href="#">ログアウト</a>
-          </li>
+          <li><%= link_to '店舗名', "#", class:"user-name nav-link text-dark" %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout nav-link text-dark" %></li>
         </ul>
       </div>
     </nav>
   </div>
 </header>
-
