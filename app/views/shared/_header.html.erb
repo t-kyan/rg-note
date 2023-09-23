@@ -12,7 +12,7 @@
           <li><%= link_to 'お客様一覧', "#", class: "customer-new nav-link text-dark" %></li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li><%= link_to '店舗名', "#", class:"user-name nav-link text-dark" %></li>
+          <li><%= link_to current_user.store_name, "#", class:"user-name nav-link text-dark" %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout nav-link text-dark" %></li>
         </ul>
       </div>
