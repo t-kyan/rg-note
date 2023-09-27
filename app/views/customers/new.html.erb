@@ -26,15 +26,21 @@
               <span class="indispensable text-danger">必須</span>
             </div>
             <!-- ここにカレンダー表示用のテキストボックスを追加 -->
-            <%= f.text_field :coming_date, class: "form-control", id: "coming_date" %>
+            <%= f.text_field :coming_date, class: "form-control", id: "coming-date" %>
           </div>
           <!-- bootstrap-datepickerのjavascriptコード -->
           <script>
-            $(document).ready(function() {
-              $('#coming_date').datepicker({
-                language:'ja'
-                format: 'yyyy/mm/dd'
-              });
+            document.addEventListener('DOMContentLoaded', function() {
+              const datePickerInput = document.getElementById('coming-date');
+              
+              if (datePickerInput) {
+                // カレンダーを有効にする
+                new bootstrap.Datepicker(datePickerInput, {
+                  language: 'ja',
+                  format: 'yyyy/mm/dd',
+                  autoclose: true,
+                });
+              }
             });
           </script>
           <!-- 生年月日の入力フィールド -->
@@ -99,16 +105,28 @@
           </div>
           <!-- javascriptコード -->
           <script>
-            $(document).ready(function() {
-              // チェックボックスの変更を監視
-              $('input[type="checkbox"]').change(function() {
-                // 選択されたオプションをテキストエリアに表示
-                var selectedOptions = [];
-                $('input[type="checkbox"]:checked').each(function() {                        
-                  selectedOptions.push($(this).val());
+            document.addEventListener('DOMContentLoaded', function() {
+              const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+              const memoTextArea = document.getElementById('memo_text');
+
+              if (checkboxes && memoTextArea) {
+                checkboxes.forEach(function(checkbox) {
+                  checkbox.addEventListener('change', function() {
+                    // チェックボックスの選択を縦に表示
+                    const selectedOptions = Array.from(checkboxes)
+                      .map(function(checkbox) {
+                        const label = checkbox.parentElement.querySelector('label');
+                        return checkbox.checked ? label.textContent + '：' : '';
+                      })
+                      .filter(function(option) {
+                        return option !== '';
+                      });
+
+                    // テキストエリアに表示
+                    memoTextArea.value = selectedOptions.join('\n');
+                  });
                 });
-                $('#memo_text').val(selectedOptions.join(', '));
-              });
+              }
             });
           </script>
         <% end %>
