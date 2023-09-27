@@ -26,23 +26,18 @@
               <span class="indispensable text-danger">必須</span>
             </div>
             <!-- ここにカレンダー表示用のテキストボックスを追加 -->
-            <%= f.text_field :coming_date, class: "form-control", id: "coming-date" %>
+            <input type="text" class="form-control" id="coming-date">
+            <!-- bootstrap-datepickerのjavascriptコード -->
+            <script>
+              window.onload = function(){
+                $('#coming-date').datepicker({
+                    format: 'yyyy/mm/dd',
+                    autoclose: true,
+                    language: 'ja'
+                  });
+              };
+            </script>
           </div>
-          <!-- bootstrap-datepickerのjavascriptコード -->
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              const datePickerInput = document.getElementById('coming-date');
-              
-              if (datePickerInput) {
-                // カレンダーを有効にする
-                new bootstrap.Datepicker(datePickerInput, {
-                  language: 'ja',
-                  format: 'yyyy/mm/dd',
-                  autoclose: true,
-                });
-              }
-            });
-          </script>
           <!-- 生年月日の入力フィールド -->
           <div class="form-group">
             <%= f.label :birth_date, "お誕生日" %>
