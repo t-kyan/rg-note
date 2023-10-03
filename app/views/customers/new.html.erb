@@ -1,12 +1,13 @@
 <%= render 'shared/header' %>
-<div class="container">
-  <div class="border col-7">
-    <br>
-    <h2>お客様新規登録</h2>
-    <br>
-    <div class="row">
-      <div class="col-md">
-        <%= form_with model:@customer, url: customers_path, local: true do |f| %>
+
+<div class="container p-5">
+  <%= form_with model: @customer_bottle, url: customers_path, local: true do |f| %>
+  <%= render 'devise/shared/error_messages', model: @customer_bottle %>
+  <div class="row border border-3 rounded border-success p-4">
+    <div class="col-md-6">
+      <h5>お客様新規登録</h5>
+      <div class="row">
+        <div class="col">
           <div class="form-group">
             <div class='form-text-wrap'>
               <%= f.label :name, "お客様名" %>
@@ -34,7 +35,6 @@
                 $('#coming-date').datepicker({
                     format: 'yyyy/mm/dd',
                     autoclose: true,
-                    language: 'ja'
                   });
               };
             </script>
@@ -75,15 +75,15 @@
             <%= f.text_field :server, class: "form-control", placeholder: "佐藤" %>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-9">
               <div class="form-group">
-                <label for="memo_text">メモ</label>
-                <textarea id="memo_text" class="form-control" rows="3"></textarea>
+                <%= f.label :memo, "メモ" %>
+                <%= f.text_area :memo, name: "memo", class: "form-control", id: "memo_text", style: "height: 200px;" %>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-3">
               <div class="form-group">
-                <label>オプション：</label>
+                <label>項目：</label>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="option1" value="領収書名">
                   <label class="form-check-label" for="option1">領収書名</label>
@@ -108,34 +108,61 @@
               if (checkboxes && memoTextArea) {
                 checkboxes.forEach(function(checkbox) {
                   checkbox.addEventListener('change', function() {
-                    // チェックボックスの選択を縦に表示
-                    const selectedOptions = Array.from(checkboxes)
-                      .map(function(checkbox) {
-                        const label = checkbox.parentElement.querySelector('label');
-                        return checkbox.checked ? label.textContent + '：' : '';
-                      })
-                      .filter(function(option) {
-                        return option !== '';
-                      });
+                    let memoText = memoTextArea.value; // 現在のテキストエリアの内容を取得
 
-                    // テキストエリアに表示
-                    memoTextArea.value = selectedOptions.join('\n');
+                    if (checkbox.checked) {
+                      // チェックボックスがチェックされた場合、項目を追加
+                      memoText += checkbox.value + '：' + '\n';
+                    } else {
+                      // チェックボックスがチェック解除された場合、項目を削除
+                      memoText = memoText.replace(checkbox.value + '\n', '');
+                    }
+
+                    // テキストエリアに更新した内容を設定
+                    memoTextArea.value = memoText;
                   });
                 });
               }
             });
           </script>
-        <% end %>
+        </div>
       </div>
     </div>
-    <div class="row center-block text-center">
-      <div class="col-1">
+    <!-- ボトルフォーム -->
+    <div class="col-md-6 p-3">
+      <h5>ボトル登録</h5>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <%= f.label :bottle_name, "ボトル名" %>
+            <%= f.text_field :bottle_name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :control_number, "管理番号" %>
+            <%= f.text_field :control_number, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :amount_in_bottle, "残量" %>
+            <%= f.text_field :amount_in_bottle, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :opening_date, "ボトル開封日" %>
+            <%= f.text_field :opening_date, class: "form-control" %>
+          </div>                             
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <button type="button" class="btn btn-outline-secondary btn-block">閉じる</button>
-    </div>
-    <div class="col-5">
-      <button type="button" class="btn btn-outline-primary btn-block">新規登録</button>
+    <!-- ボタン -->
+    <div class="row justify-content-center mt-3">
+      <div class="btn-group col-6">
+        <%= link_to "閉じる", customers_path, class:"button btn btn-outline-success btn-block" %>
+        <%= f.submit "新規登録", class:"button btn btn-success btn-block" %>
+      </div>
     </div>
   </div>
+  <% end %>
 </div>
+
+
+
+
