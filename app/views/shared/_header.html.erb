@@ -1,19 +1,19 @@
-<header class='top-page-header bg-light'>
+<header class="top-page-header bg-success">
   <!-- ナビゲーションメニュー -->
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand text-dark" href="#">Regular Guest</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand text-light fs-3" href="#">Regular Guest</a>
+      <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon bg-light"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-          <li><%= link_to 'お客様一覧', customers_path, class: "customer-list nav-link text-dark" %></li>
-          <li><%= link_to 'お客様登録', new_customer_path, class: "customer-new nav-link text-dark" %></li>
+          <li><%= link_to 'お客様一覧', customers_path, class: "customer-list nav-link text-light" %></li>
+          <li><%= link_to 'お客様登録', new_customer_path, class: "customer-new nav-link text-light" %></li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li><%= link_to current_user.store_name, "#", class:"user-name nav-link text-dark" %></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout nav-link text-dark" %></li>
+          <li><%= link_to current_user.store_name, "#", class:"user-name nav-link text-light" %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout nav-link text-light" %></li>
         </ul>
       </div>
     </nav>
