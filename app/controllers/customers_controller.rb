@@ -8,4 +8,7 @@ class CustomersController < ApplicationController
   def new
     @Customer = Customer.new
   end
+
+  def create
+  end
 end
