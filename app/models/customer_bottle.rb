@@ -7,7 +7,7 @@ class CustomerBottle
     validates :name_kana, format: {with: /\A[ァ-ヶー]+\z/}
     validates :user_id
   end
-  validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+  validates :phone, format: { with: /\A\d{10,11}\z/ }
 
   def save
     customer = Customer.create(user_id: user_id, name: name, name_kana: name_kana, coming_date: coming_date, birth_date: birth_date, company: company, phone: phone, address: address, friend: friend,
