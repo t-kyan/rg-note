@@ -11,7 +11,7 @@ class CustomerBottle
 
   def save
     customer = Customer.create(user_id: user_id, name: name, name_kana: name_kana, coming_date: coming_date, birth_date: birth_date, company: company, phone: phone, address: address, friend: friend,
-    server: server, memo: memo)
+    server: server, memo: memo, image: image)
     Bottle.create(bottle_name: bottle_name, control_number: control_number, amount_in_bottle: amount_in_bottle, opening_date: opening_date, customer_id: customer.id)
   end
 
