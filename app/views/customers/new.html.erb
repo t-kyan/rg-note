@@ -28,7 +28,7 @@
               <span class="indispensable text-danger">必須</span>
             </div>
             <!-- ここにカレンダー表示用のテキストボックスを追加 -->
-            <input type="text" class="form-control" id="coming-date">
+            <%= f.date_field :coming_date, value: Date.today, required: true %>
             <!-- bootstrap-datepickerのjavascriptコード -->
             <script>
               window.onload = function(){
