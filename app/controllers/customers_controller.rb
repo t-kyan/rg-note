@@ -10,10 +10,10 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer_bottle = CustomerBottle.create(customer_params)
+    @customer_bottle = CustomerBottle.new(customer_params)
     if @customer_bottle.valid?
       @customer_bottle.save
-      redirect_to customer_path
+      redirect_to customers_path
     else
       render :new
     end
@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer_bottle).permit(user_id: user_id, name: name, name_kana: name_kana, coming_date: coming_date, birth_date: birth_date, company: company, phone: phone, address: address, friend: friend,
-      server: server, memo: memo,bottle_name: bottle_name, control_number: control_number, amount_in_bottle: amount_in_bottle, opening_date: opening_date).merge(user_id: current_user.id,  customer_id: params[:customer_id])
+    params.require(:customer_bottle).permit(:name, :name_kana, :coming_date, :birth_date, :company, :phone, :address, :friend,
+      :server, :memo, :bottle_name, :control_number, :amount_in_bottle, :opening_date).merge(user_id: current_user.id)
   end
 end
