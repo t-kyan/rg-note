@@ -10,6 +10,13 @@
         <div class="col">
           <div class="form-group">
             <div class='form-text-wrap'>
+              画像
+              <span class="indispensable text-danger">クリックしてアップロード</span>
+            </div>
+            <%= f.file_field :image, id:"customer_img" %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
               <%= f.label :name, "お客様名" %>
               <span class="indispensable text-danger">必須</span>
             </div>
@@ -29,15 +36,6 @@
             </div>
             <!-- ここにカレンダー表示用のテキストボックスを追加 -->
             <%= f.date_field :coming_date, value: Date.today, required: true %>
-            <!-- bootstrap-datepickerのjavascriptコード -->
-            <script>
-              window.onload = function(){
-                $('#coming-date').datepicker({
-                    format: 'yyyy/mm/dd',
-                    autoclose: true,
-                  });
-              };
-            </script>
           </div>
           <!-- 生年月日の入力フィールド -->
           <div class="form-group">
@@ -82,8 +80,8 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="form-group">
-                <label>項目：</label>
+              <div class="form-group mt-3">
+                <label>項目</label>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="option1" value="領収書名">
                   <label class="form-check-label" for="option1">領収書名</label>
@@ -99,32 +97,6 @@
               </div>
             </div>
           </div>
-          <!-- javascriptコード -->
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-              const memoTextArea = document.getElementById('memo_text');
-
-              if (checkboxes && memoTextArea) {
-                checkboxes.forEach(function(checkbox) {
-                  checkbox.addEventListener('change', function() {
-                    let memoText = memoTextArea.value; // 現在のテキストエリアの内容を取得
-
-                    if (checkbox.checked) {
-                      // チェックボックスがチェックされた場合、項目を追加
-                      memoText += checkbox.value + '：' + '\n';
-                    } else {
-                      // チェックボックスがチェック解除された場合、項目を削除
-                      memoText = memoText.replace(checkbox.value + '\n', '');
-                    }
-
-                    // テキストエリアに更新した内容を設定
-                    memoTextArea.value = memoText;
-                  });
-                });
-              }
-            });
-          </script>
         </div>
       </div>
     </div>
@@ -133,22 +105,35 @@
       <h5>ボトル登録</h5>
       <div class="row">
         <div class="col">
-          <div class="form-group">
-            <%= f.label :bottle_name, "ボトル名" %>
-            <%= f.text_field :bottle_name, class: "form-control" %>
+          <div class="bottle-form" id="bottle-form">
+            <div class="d-flex flex-wrap">
+              <div class="form-group flex-grow-1">
+                <%= f.label :bottle_name, "ボトル名" %>
+                <%= f.text_field :bottle_name, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :control_number, "管理番号" %>
+                <%= f.text_field :control_number, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :amount_in_bottle, "残量" %>
+                <%= f.text_field :amount_in_bottle, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :opening_date, "ボトル開封日" %>
+                <%= f.text_field :opening_date, class: "form-control" %>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <%= f.label :control_number, "管理番号" %>
-            <%= f.text_field :control_number, class: "form-control" %>
+          <div id="form-container"></div>
+          <!-- フォーム削除リンク -->
+          <div class="form-group d-flex align-items-center ml-2">
+            <a href="#" class="remove-form" id="remove-form">削除</a>
           </div>
-          <div class="form-group">
-            <%= f.label :amount_in_bottle, "残量" %>
-            <%= f.text_field :amount_in_bottle, class: "form-control" %>
+          <!-- フォームを追加するためのチェックボックス -->
+          <div class="form-group d-flex align-items-center ml-2">
+            <a href="#" class="add-form mr-2" id="add-form">フォームを追加</a>
           </div>
-          <div class="form-group">
-            <%= f.label :opening_date, "ボトル開封日" %>
-            <%= f.text_field :opening_date, class: "form-control" %>
-          </div>                             
         </div>
       </div>
     </div>
