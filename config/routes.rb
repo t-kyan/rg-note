@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_scope :user do
     root to: 'devise/sessions#new'
+    get '/users/sign_out', to: 'devise/sessions#destroy'
   end
   devise_for :users
-  resources :customers
+  resources :customers, only: [:index, :new, :create]
 end
