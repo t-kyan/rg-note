@@ -9,10 +9,8 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <div class='form-text-wrap'>
-              画像
-              <span class="indispensable text-danger">クリックしてアップロード</span>
-            </div>
+            <%= f.label :image, "画像" %>
+            <span class="indispensable text-danger">クリックしてアップロード</span>
             <%= f.file_field :image, id:"customer_img" %>
           </div>
           <div class="form-group">

@@ -21,20 +21,35 @@
         <th scope="col">来店日</th>
       </tr>
     </thead>
-    <%# "@customers.each_with_index" do |customer, index| %>
-      <tr>
-        <th scope="row"><%# index + 1 %></th>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-        <td><%= "#" %></td>
-      </tr>
-    <%# end %>
-  </tbody>
-
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td>
+            <% if customer.image.attached? %>
+              <%= image_tag customer.image.variant(resize: "100x100") %>
+            <% end %>
+          </td>
+          <td><%= customer.name %></td>
+          <td><%= customer.company %></td>
+          <td>
+            <% if customer.bottles.any? %>
+              <%= customer.bottles.first.bottle_name %>
+            <% end %>
+          </td>
+          <td>
+            <% if customer.bottles.any? %>
+              <%= customer.bottles.first.opening_date %>
+            <% end %>
+          </td>
+          <td>
+            <% if customer.bottles.any? %>
+              <%= days_since_opening(customer.bottles.first.opening_date) %>
+            <% end %>
+          </td>
+          <td><%= customer.server %></td>
+          <td><%= customer.coming_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
