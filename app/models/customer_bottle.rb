@@ -7,7 +7,8 @@ class CustomerBottle
     validates :name_kana, format: {with: /\A[ァ-ヶー]+\z/}
     validates :user_id
   end
-  validates :phone, format: { with: /\A\d{10,11}\z/ }
+  validates :coming_date, presence: { message: "can't be blank" }
+  validates :phone, format: { with: /\A\d{10,11}\z/ }, allow_blank: true
 
   def save
     customer = Customer.create(user_id: user_id, name: name, name_kana: name_kana, coming_date: coming_date, birth_date: birth_date, company: company, phone: phone, address: address, friend: friend,
