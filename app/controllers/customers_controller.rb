@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer_bottle).permit(:name, :name_kana, :coming_date, :birth_date, :company, :phone, :address, :friend,
-      :server, :memo, :image, :bottle_name, :control_number, :amount_in_bottle, :opening_date).merge(user_id: current_user.id)
+    params.require(:customer_bottle).permit(:image, :name, :name_kana, :coming_date, :birth_date, :company, :phone, :address, :friend,
+      :server, :memo, :bottle_name, :control_number, :amount_in_bottle, :opening_date).merge(user_id: current_user.id)
   end
 end

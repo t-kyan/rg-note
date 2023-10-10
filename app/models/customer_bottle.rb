@@ -1,6 +1,6 @@
 class CustomerBottle
   include ActiveModel::Model
-  attr_accessor :name, :name_kana, :coming_date, :birth_date, :company, :phone, :address, :friend, :server, :memo, :bottle_name, :control_number, :amount_in_bottle, :opening_date, :user_id
+  attr_accessor :image, :name, :name_kana, :coming_date, :birth_date, :company, :phone, :address, :friend, :server, :memo, :bottle_name, :control_number, :amount_in_bottle, :opening_date, :user_id
 
   with_options presence: true do
     validates :name
