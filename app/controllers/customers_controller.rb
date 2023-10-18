@@ -19,6 +19,10 @@ class CustomersController < ApplicationController
     end
   end
 
+  def show
+    @customer_bottle = Customer.find(params[:id])
+  end
+
   private
 
   def customer_params
