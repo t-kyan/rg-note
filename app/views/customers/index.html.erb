@@ -26,10 +26,12 @@
         <tr>
           <td>
             <% if customer.image.attached? %>
-              <%= image_tag customer.image.variant(resize: "100x100") %>
+              <%= link_to customer_path(customer) do %>
+                <%= image_tag customer.image.variant(resize: "50x50") %>
+              <% end %>
             <% end %>
           </td>
-          <td><%= customer.name %></td>
+          <td><%= link_to customer.name, customer_path(customer), class: "text-dark text-decoration-none fw-bold" %></td>
           <td><%= customer.company %></td>
           <td>
             <% if customer.bottles.any? %>
