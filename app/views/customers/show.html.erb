@@ -1,0 +1,68 @@
+<%= render 'shared/header' %>  
+  <div class="container p-5">
+    <div class="row border border-3 rounded border-success p-4">
+      <div class="col-md-6">
+        <h5>お客様詳細</h5>
+        <div class="form-group">
+          <%= image_tag @customer_bottle.image.variant(resize: "100x100") if @customer_bottle.image.attached? %>
+        </div>
+        <div class="form-group">
+          <strong>お客様名:</strong> <%= @customer_bottle.name %>
+        </div>
+        <div class="form-group">
+          <strong>フリガナ:</strong> <%= @customer_bottle.name_kana %>
+        </div>
+        <div class="form-group">
+          <strong>最終来店日:</strong> <%= @customer_bottle.coming_date %>
+        </div>
+        <div class="form-group">
+          <strong>お誕生日:</strong> <%= @customer_bottle.birth_date %>
+        </div>
+        <div class="form-group">
+          <strong>会社名:</strong> <%= @customer_bottle.company %>
+        </div>
+        <div class="form-group">
+          <strong>電話番号:</strong> <%= @customer_bottle.phone %>
+        </div>
+        <div class="form-group">
+          <strong>住所:</strong> <%= @customer_bottle.address %>
+        </div>
+        <div class="form-group">
+          <strong>お連れ様:</strong> <%= @customer_bottle.friend %>
+        </div>
+        <div class="form-group">
+          <strong>担当:</strong> <%= @customer_bottle.server %>
+        </div>
+        <div class="form-group">
+          <strong>メモ:</strong> <%= @customer_bottle.memo %>
+        </div>
+      </div>
+      <div class="col-md-6 p-3">
+        <h5>ボトル情報</h5>
+        <% @customer_bottle.bottles.each do |bottle| %>
+          <div class="bottle-form" id="bottle-form">
+            <div class="d-flex flex-wrap">
+              <div class="form-group flex-grow-1">
+                <strong>ボトル名:</strong> <%= bottle.bottle_name %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <strong>管理番号:</strong> <%= bottle.control_number %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <strong>残量:</strong> <%= bottle.amount_in_bottle %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <strong>ボトル開封日:</strong> <%= bottle.opening_date %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="btn-group col-6">
+          <%= link_to "閉じる", customers_path, class:"button btn btn-outline-success btn-block" %>
+          <%= link_to "編集する",  class:"button btn btn-success btn-block" %>
+        </div>
+      </div>
+    </div>
+  </div>
