@@ -23,6 +23,9 @@ class CustomersController < ApplicationController
     @customer_bottle = Customer.find(params[:id])
   end
 
+  def edit
+    @customer_bottle = Customer.find(params[:id])
+  end
   private
 
   def customer_params
