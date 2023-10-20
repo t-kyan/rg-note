@@ -8,7 +8,7 @@
   </form>
   <!-- 顧客一覧テーブル -->
   <table class="table caption-top my-5 mx-auto">
-    <h3>お客様一覧</h3>
+    <caption class="h3">お客様一覧</caption>
     <thead>
       <tr>
         <th scope="col">画像</th>
@@ -33,21 +33,11 @@
           </td>
           <td><%= link_to customer.name, customer_path(customer), class: "text-decoration-none fw-bold" %></td>
           <td><%= customer.company %></td>
-          <td>
-            <% if customer.bottles.any? %>
-              <%= customer.bottles.first.bottle_name %>
-            <% end %>
-          </td>
-          <td>
-            <% if customer.bottles.any? %>
-              <%= customer.bottles.first.opening_date %>
-            <% end %>
-          </td>
-          <td>
-            <% if customer.bottles.any? %>
-              <%= days_since_opening(customer.bottles.first.opening_date) %>
-            <% end %>
-          </td>
+          <!-- ボトル情報 -->
+          <% first_bottle = customer.bottles.first %>
+          <td><%= first_bottle.bottle_name %></td>
+          <td><%= first_bottle.opening_date %></td>
+          <td><%= days_since_opening(first_bottle.opening_date) %></td>
           <td><%= customer.server %></td>
           <td><%= customer.coming_date %></td>
         </tr>

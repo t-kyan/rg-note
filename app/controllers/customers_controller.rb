@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.order(created_at: :desc).limit(5)
   end
 
   def new
