@@ -1,0 +1,147 @@
+<%= render 'shared/header' %>
+
+<div class="container p-5">
+  <%= form_with model: @customer_bottle, local: true do |f| %>
+  <%= render 'devise/shared/error_messages', model: @customer_bottle %>
+  <div class="row border border-3 rounded border-success p-4">
+    <div class="col-md-6">
+      <h5>編集する</h5>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <%= f.label :image, "画像" %>
+            <span class="indispensable text-danger">クリックしてアップロード</span>
+            <%= f.file_field :image, id:"customer_img" %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <%= f.label :name, "お客様名" %>
+              <span class="indispensable text-danger">必須</span>
+            </div>
+            <%= f.text_field :name, class: "form-control", id:"name", placeholder: "山田 太郎" %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <%= f.label :name_kana, "フリガナ" %>
+              <span class="indispensable text-danger">必須</span>
+            </div>
+            <%= f.text_field :name_kana, class: "form-control", placeholder: "ヤマダ タロウ" %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <%= f.label :coming_date, "最終来店日" %>
+              <span class="indispensable text-danger">必須</span>
+            </div>
+            <!-- ここにカレンダー表示用のテキストボックスを追加 -->
+            <%= f.date_field :coming_date, value: Date.today, required: true %>
+          </div>
+          <!-- 生年月日の入力フィールド -->
+          <div class="form-group">
+            <%= f.label :birth_date, "お誕生日" %>
+            <div class="row">
+              <div class="col">
+                <%= f.text_field :birth_year, class: "form-control", placeholder: "年を入力" %>
+              </div>
+              <div class="col">
+                <%= f.text_field :birth_month, class: "form-control", placeholder: "月を入力" %>
+              </div>
+              <div class="col">
+                <%= f.text_field :birth_day, class: "form-control", placeholder: "日を入力" %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :company, "会社名" %>
+            <%= f.text_field :company, class: "form-control", placeholder: "株式会社 ○○" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :phone, "電話番号" %>
+            <%= f.text_field :phone, class: "form-control", placeholder: "09012345678",maxlength:"11" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :address, "住所" %>
+            <%= f.text_field :company, class: "form-control", placeholder: "東京都〇〇市〇〇区〇〇〇町X-X-X 渋谷ビル1 XXX号室" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :friend, "お連れ様" %>
+            <%= f.text_field :companion, class: "form-control", placeholder: "花子" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :server, "担当" %>
+            <%= f.text_field :server, class: "form-control", placeholder: "佐藤" %>
+          </div>
+          <div class="row">
+            <div class="col-9">
+              <div class="form-group">
+                <%= f.label :memo, "メモ" %>
+                <%= f.text_area :memo, name: "memo", class: "form-control", id: "memo_text", style: "height: 200px;" %>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group mt-3">
+                <label>項目</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="option1" value="領収書名">
+                  <label class="form-check-label" for="option1">領収書名</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="option2" value="アレルギー">
+                  <label class="form-check-label" for="option2">アレルギー</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="option3" value="その他">
+                  <label class="form-check-label" for="option3">その他</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ボトルフォーム -->
+    <div class="col-md-6 p-3">
+      <h5>ボトル登録</h5>
+      <div class="row">
+        <div class="col">
+          <div class="bottle-form" id="bottle-form">
+            <div class="d-flex flex-wrap">
+              <div class="form-group flex-grow-1">
+                <%= f.label :bottle_name, "ボトル名" %>
+                <%= f.text_field :bottle_name, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :control_number, "管理番号" %>
+                <%= f.text_field :control_number, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :amount_in_bottle, "残量" %>
+                <%= f.text_field :amount_in_bottle, class: "form-control" %>
+              </div>
+              <div class="form-group flex-grow-1">
+                <%= f.label :opening_date, "ボトル開封日" %>
+                <%= f.text_field :opening_date, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div id="form-container"></div>
+          <!-- フォーム削除リンク -->
+          <div class="form-group d-flex align-items-center ml-2">
+            <a href="#" class="remove-form" id="remove-form">削除</a>
+          </div>
+          <!-- フォームを追加するためのチェックボックス -->
+          <div class="form-group d-flex align-items-center ml-2">
+            <a href="#" class="add-form mr-2" id="add-form">フォームを追加</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ボタン -->
+    <div class="row justify-content-center mt-3">
+      <div class="btn-group col-6">
+        <%= link_to "もどる", customers_path, class:"button btn btn-outline-success btn-block" %>
+        <%= f.submit "変更する", class:"button btn btn-success btn-block" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
