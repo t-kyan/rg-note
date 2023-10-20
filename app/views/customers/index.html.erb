@@ -8,7 +8,7 @@
   </form>
   <!-- 顧客一覧テーブル -->
   <table class="table caption-top my-5 mx-auto">
-    <caption>お客様一覧</caption>
+    <h3>お客様一覧</h3>
     <thead>
       <tr>
         <th scope="col">画像</th>
@@ -26,10 +26,12 @@
         <tr>
           <td>
             <% if customer.image.attached? %>
-              <%= image_tag customer.image.variant(resize: "100x100") %>
+              <%= link_to customer_path(customer) do %>
+                <%= image_tag customer.image.variant(resize: "50x50") %>
+              <% end %>
             <% end %>
           </td>
-          <td><%= customer.name %></td>
+          <td><%= link_to customer.name, customer_path(customer), class: "text-decoration-none fw-bold" %></td>
           <td><%= customer.company %></td>
           <td>
             <% if customer.bottles.any? %>
