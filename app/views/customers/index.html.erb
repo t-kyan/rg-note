@@ -33,11 +33,10 @@
           </td>
           <td><%= link_to customer.name, customer_path(customer), class: "text-decoration-none fw-bold" %></td>
           <td><%= customer.company %></td>
-          <!-- ボトル情報 -->
           <% first_bottle = customer.bottles.first %>
-          <td><%= first_bottle.bottle_name %></td>
-          <td><%= first_bottle.opening_date %></td>
-          <td><%= days_since_opening(first_bottle.opening_date) %></td>
+            <td><%= first_bottle&.bottle_name %></td>
+            <td><%= first_bottle&.opening_date %></td>
+            <td><%= days_since_opening(first_bottle&.opening_date) %></td>
           <td><%= customer.server %></td>
           <td><%= customer.coming_date %></td>
         </tr>
